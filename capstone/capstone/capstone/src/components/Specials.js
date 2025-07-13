@@ -1,59 +1,67 @@
 import React from "react";
-import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
 import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "Greek Salad",
+    price: 8.00,
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
-    getImageSrc: () => require("../assets/photo1.jpg"),
+      "Fresh tomatoes, cucumbers, red onion, Kalamata olives, and feta cheese, dressed with extra virgin olive oil and oregano.",
+    getImageSrc: () => require(("../assets/greek salad.jpg")),
   },
   {
-    title: "React Infinite Scroll",
+    title: "Mezze Platter",
+    price: 15.00,
     description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-    getImageSrc: () => require("../assets/photo2.jpg"),
+      "A selection of hummus, tzatziki, baba ganoush, olives, pita bread, and dolmades.",
+    getImageSrc: () => require(("../assets/mezze.jpg")),
   },
   {
-    title: "Event planner",
+    title: "Moussaka",
+    price: 12.50,
     description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
-    getImageSrc: () => require("../assets/photo4.jpg"),
+      "Baked eggplant layered with minced lamb, tomatoes, and a creamy béchamel sauce.",
+    getImageSrc: () => require(("../assets/moussaka.jpg")),
   },
 ];
 
 const Specials = () => {
   return (
-    <FullScreenSection
-      id="projects"
-      backgroundColor="#14532d"
-      isDarkBackground
-      p={8}
-      alignItems="flex-start"
-      spacing={8}
-    >
-      <Heading as="h1" id="projects-section">
-        Featured Projects
-      </Heading>
-      <Box
-        display="flex"
-        overflowX="auto"
-        gap={8}
-        pb={4} // add bottom padding for scroll bar space
+      <div style={{ paddingTop: "80px" }}>
+      <h2
+        id="projects-section"
+        style={{
+          margin: "0",
+          padding: "40px",
+          // textAlign:"left",
+          paddingLeft:"390px"
+        }}
+      >
+        This Months Specials
+      </h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "60px",
+          width: "100%",
+          margin: "auto",
+          paddingBottom: "32px",
+        }}
       >
         {projects.map((project) => (
           <Card
             key={project.title}
             title={project.title}
             description={project.description}
+            price={project.price}
             imageSrc={project.getImageSrc()}
           />
         ))}
-      </Box>
-    </FullScreenSection>
-  );
+      </div>
+      </div>  );
 };
 
 export default Specials;

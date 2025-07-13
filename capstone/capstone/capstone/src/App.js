@@ -5,20 +5,19 @@ import Footer from './components/Footer';
 import PromoBanner from './components/PromoBanner';
 import ConfirmedBooking from './components/ConfirmedBooking';
 import Specials from './components/Specials';
-import { AlertProvider } from "./context/alertContext";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import BookingPage from './components/BookingPage';
-
+import AboutSection from './components/AboutSection';
 
 function App() {
   const [availableTimes, setAvailableTimes] = useState([]);
+  
 
   return (
    <>
-    <AlertProvider> 
    <BrowserRouter>
     <Routes> 
-      <Route path="/Reserve" element={
+      <Route path="/reserve" element={
         <BookingPage
         availableTimes={availableTimes} 
         setAvailableTimes={setAvailableTimes} />}>
@@ -29,8 +28,8 @@ function App() {
    <Header/>
     <PromoBanner/>
       <Specials />
+      <AboutSection/>
     <Footer/>
-    </AlertProvider>
    </>
   );
 }

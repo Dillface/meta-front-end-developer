@@ -1,14 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import assetImage from "../assets/Asset 16@4x.png"; // Adjust the relative path accordingly
+import { faBars, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import assetImage from "../assets/Asset 16@4x.png";
 import {
   faFacebook,
   faInstagram,
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack, Link} from "@chakra-ui/react";
 
 const socials = [
   {
@@ -34,59 +33,67 @@ const socials = [
 ];
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <Box
-      position="fixed"
-      top={0}
-      left={0}
-      right={0}
-      translateY={0}
-      transitionProperty="transform"
-      transitionDuration=".3s"
-      transitionTimingFunction="ease-in-out"
-      backgroundColor="orange"
-      zIndex="1000" 
-    >
-      <Box color="white" maxWidth="1280px" margin="0 auto">
-        <HStack
-          px={16}
-          py={4}
-          justifyContent="space-between"
-          alignItems="center"
-        >
+    <div className="header">
+      <div className="inner-container">
+        <div className="nav-container">
           <a href="/">
-          <img
-            src={assetImage}
-            alt="header logo"
-            style={{
-              width: "150px",
-              objectFit: "contain",
-            }}
-          />
+            <img src={assetImage} alt="header logo" className="logo" />
           </a>
-          <nav>
-              <ul>
-              <HStack spacing={8}>
-                {socials.map((social, index) => (
-                  <Link key={index} href={social.url} isExternal>
+          <nav className="social-nav">
+            <ul className="social-list">
+              {socials.map((social, index) => (
+                <li key={index}>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link"
+                  >
                     <FontAwesomeIcon icon={social.icon} size="1x" />
-                  </Link>
-                ))}
-              </HStack>
-              </ul>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </nav>
-          <nav>
-            <HStack spacing={8}>
-              <a href="/Menu">Menu</a>
-              <a href="/Reserve">Reserve a Table</a>
-              <a href="/Bookings">Bookings</a>
-              <a href="/About">About</a>
-            </HStack>
+          <nav className="main-menu">
+            <div className="desktop-menu">
+              <a href="/menu" className="menu-link">
+                <strong>Menu</strong>
+              </a>
+              <a href="/reserve" className="menu-link">
+                <strong>Bookings</strong>
+              </a>
+              <a href="/about" className="menu-link">
+                <strong>About</strong>
+              </a>
+            </div>
+            <button
+              className="hamburger"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </button>
+            {menuOpen && (
+              <div className="mobile-menu">
+                <a href="/menu" className="mobile-menu-link">
+                  <strong>Menu</strong>
+                </a>
+                <a href="/reserve" className="mobile-menu-link">
+                  <strong>Bookings</strong>
+                </a>
+                <a href="#about" className="mobile-menu-link">
+                  <strong>About</strong>
+                </a>
+              </div>
+            )}
           </nav>
-        </HStack>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
+
 export default Header;

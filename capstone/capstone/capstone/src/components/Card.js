@@ -1,49 +1,53 @@
-import { Heading, Image, Text, VStack, HStack, Button, Flex, Box } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
-import "../index.css";
 import React from "react";
+import "../index.css";
 
-const Card = ({ title, description, imageSrc }) => {
+const Card = ({ title, description, imageSrc, price }) => {
   return (
-    <Flex
-      direction="column"
-      borderWidth="1px"
-      borderRadius="xl"
-      boxShadow="md"
-      bg="white"
-      overflow="hidden"
-      width="250px"
-      minHeight="300px"
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        border: "1px solid #ccc",
+        borderRadius: "1em",
+        borderBlockColor:"yellowgreen",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        backgroundColor: "white",
+        overflow: "hidden",
+        width: "275px",
+        height: "435px",
+      }}
     >
-      <Image
-        w="100%"
-        h="150px"
-        objectFit="cover"
-        src={imageSrc}
-        alt={title}
-        borderTopRadius="xl"
-      />
-      <Box p={4} flex="1">
-        <Heading as="h4" size="md" color="#36454F" mb={2}>
-          {title}
-        </Heading>
-        <Text fontSize="sm" color="#36454F">
-          {description}
-        </Text>
-      </Box>
-      <Flex align="center" gap={2} p={4}>
-        <Button
-          variant="solid"
-          colorScheme="teal"
-          size="sm"
-          href="#placeholder-link"
-        >
-          See more&nbsp;
-          <FontAwesomeIcon icon={faArrowAltCircleRight} size="1x" color="#36454F" />
-        </Button>
-      </Flex>
-    </Flex>
+      <div style={{ width: "100%", height: "150px", overflow: "hidden" }}>
+        <img
+          src={imageSrc}
+          alt={title}
+          style={{
+            width: "100%",
+            height: "150px",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div style={{ padding: "1rem", flex: 1, overflowY: "auto" }}>
+        <h4 style={{ color: "#36454F", marginBottom: "0.5rem" }}>{title}</h4>
+        <p style={{ fontSize: "0.875rem", color: "#36454F" }}>{description}</p>
+        <p style={{ fontSize: "0.875rem", color: "#36454F", marginBottom: "0.1rem" }}>
+          <strong>£{price}</strong>
+        </p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          padding: "1rem",
+        }}
+      >
+        <button>
+          Order now
+        </button>
+      </div>
+    </div>
   );
 };
 
